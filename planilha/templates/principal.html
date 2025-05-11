@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Combinar Planilhas</title>
+</head>
+<body>
+  <h2>Upload de Várias Planilhas</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="planilhas" multiple required><br><br>
+    <button type="submit">Baixar arquivo combinado</button>
+    {% if erro %}
+    <p style="color:red">{{ erro }}</p>
+    {% endif %}
+  </form>
+</body>
+</html>
