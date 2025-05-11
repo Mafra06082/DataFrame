@@ -1,0 +1,16 @@
+# Ambiente virtual
+venv/
+ENV/
+env/
+
+# Python compilado e SQLite
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Planilhas de saída
+*.xlsx
