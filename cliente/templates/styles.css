@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to right, #6a11cb, #2575fc); /* Cor de fundo igual à do botão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white; /* Cor branca para harmonizar */
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white; /* Ajuste para ficar visível */
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Ajuste para refletir o texto */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #333; /* Fundo escuro */
+    color: white; /* Para combinar com o fundo */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to right, #6a11cb, #2575fc); /* Gradiente do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; /* Para um toque mais chamativo */
+}
+
+button:hover {
+    background-color: #218838; /* Verde no hover */
+}
+
+#message {
+    margin-top: 15px;
+    color: red; /* Para mensagens de erro */
+}

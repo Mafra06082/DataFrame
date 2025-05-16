@@ -1,0 +1,266 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload de Planilhas</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Função que valida se foi selecionado ao menos um arquivo e exibe a mensagem integrada
+    function gerarArquivos() {
+  const fileUpload = document.getElementById("fileUpload");
+  const resultMessage = document.getElementById("result-message");
+
+  // Verifica se foram selecionados pelo menos três arquivos
+  if (!fileUpload.files.length || fileUpload.files.length < 3) {
+    resultMessage.className = "result-message error";
+    resultMessage.innerText = "Erro: Selecione ao menos 3 arquivos!";
+    resultMessage.style.display = "block";
+    return;
+  }
+
+  resultMessage.className = "result-message success";
+  resultMessage.innerText = "Arquivos processados com sucesso!";
+  resultMessage.style.display = "block";
+}
+
+
+    // Tenta fechar a janela (alguns navegadores podem bloquear)
+    function sairPagina() {
+      if (confirm("Tem certeza que deseja sair?")) {
+        window.close();
+      }
+    }
+  </script><style type="text/css" id="operaUserStyle"></style>
+  <style>
+    /* Importa fonte Roboto para um visual moderno */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0D0D2B, #1A1A40);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      max-width: 1200px;
+      width: 90%;
+      margin: 20px;
+      overflow: hidden;
+    }
+
+    /* Cabeçalho com o botão SAIR */
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+    .sair-btn {
+      font-size: 1rem;
+      padding: 15px 15px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #6A0DAD, #FF69B4);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .sair-btn:hover {
+      transform: scale(1.05);
+      background: #FF69B4;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      min-height: 500px;
+    }
+
+    /* Coluna da esquerda: Tutorial */
+    .tutorial {
+      flex: 1;
+      padding: 40px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+      text-align: left;
+    }
+    .tutorial h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .tutorial-step {
+      margin-bottom: 25px;
+    }
+    .tutorial-step h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #8BC34A;
+    }
+    .tutorial-step p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Coluna da direita: Upload com logo integrada e centralizada */
+    .upload-area {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      height: 400px;   /* Mantido o tamanho definido para a logo */
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .upload-field {
+      margin-bottom: 25px;
+      width: 100%;
+    }
+    .file-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .custom-file-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(to right, #000000, #005eff);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .custom-file-button:hover {
+      background: #45A049;
+    }
+    .upload-field input[type="file"] {
+      display: none;
+    }
+    .generate-btn {
+      width: 100%;
+      max-width: 250px;
+      padding: 15px;
+      background: linear-gradient(to right, #4CAF50, #8BC34A);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 20px;
+    }
+    .generate-btn:hover {
+      background: #45A049;
+    }
+
+    /* Mensagem de resultado */
+    .result-message {
+      font-size: 1.1rem;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      display: none;
+    }
+    .result-message.success {
+      background: linear-gradient(to right, #4CAF50, #8BC34A);
+    }
+    .result-message.error {
+      background: linear-gradient(to right, #FF4D4D, #FF0000);
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+      .tutorial {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 20px;
+      }
+      .upload-area {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cabeçalho com o botão SAIR -->
+    <div class="header">
+      <button class="sair-btn" onclick="sairPagina()">SAIR</button>
+    </div>
+    <div class="content">
+      <!-- Coluna da esquerda: Tutorial -->
+      <section class="tutorial">
+        <h1>TUTORIAL</h1>
+        <div class="tutorial-step">
+          <h3>Verifique os campos:</h3>
+          <p>Na página principal, você já verá três campos de upload destinados às suas planilhas. Confira se os arquivos corretos estão prontos para serem enviados.</p>
+        </div>
+        <div class="tutorial-step">
+          <h3>Selecione os arquivos:</h3>
+          <p>Clique em cada campo de arquivo e escolha a planilha desejada no seu computador. Certifique-se de que os formatos dos arquivos estão conforme especificado (por exemplo, CSV ou XLSX).</p>
+        </div>
+        <div class="tutorial-step">
+          <h3>Revise as instruções:</h3>
+          <p>As orientações detalhadas estão à direita dos campos. Leia rapidamente para confirmar o formato e a sequência de carregamento, se necessário.</p>
+        </div>
+        <div class="tutorial-step">
+          <h3>Clique em "GERAR":</h3>
+          <p>Após inserir todos os arquivos, basta clicar no botão "GERAR" para iniciar o processo de compilação. O sistema combinará e organizará os dados automaticamente.</p>
+        </div>
+        <div class="tutorial-step">
+          <h3>Aguarde a conclusão:</h3>
+          <p>Enquanto o site processa os dados, você pode acompanhar o status (geralmente indicado por uma barra de progresso ou mensagem).</p>
+        </div>
+        <div class="tutorial-step">
+          <h3>Resultado:</h3>
+          <p>Assim que o processamento for concluído, uma nova planilha será gerada. Você poderá visualizá-la diretamente no site ou fazer o download.</p>
+        </div>
+      </section>
+     <!-- Coluna da direita: Upload com logo integrada -->
+      <section class="upload-area"> 
+      <div class="logo">
+      <img src="https://i.imgur.com/6XU9DnI.png" alt="DataFrame - Organizador de Planilhas">
+      </div>
+       
+      <form method="POST" action="{% url 'planilha' %}" enctype="multipart/form-data" onsubmit="return validarEEnviar(this)">
+       {% csrf_token %}
+      <div class="upload-field">
+      <label for="file2" class="file-label">Arquivos:</label>
+      <label for="file2" class="custom-file-button">Selecione aqui...</label>
+      <input type="file" id="file2" name="planilhas" multiple required><br><br> 
+      </div>
+      <button class="generate-btn" onclick="gerarArquivos()">GERAR</button>
+      <div id="result-message" class="result-message"></div>
+      </section>
+    </div>
+  </div>
+
+
+</body></html>

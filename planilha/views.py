@@ -11,20 +11,19 @@ def principal_view(request):
 
         # Se não vier mais de um, avisa no console e renderiza o template de novo
         if len(files) < 2:
-            print("[DEBUG] Menos de 2 arquivos, não irei processar.")
-            return render(request, 'principal.html', {
+            print("[DEBUG] Menos de 2 arquivos, adicione pelo menos mais um.")
+            return render(request, 'index.html', {
                 'erro': 'Por favor faça upload de pelo menos 2 planilhas.'
             })
 
         # carrega cada Excel num DataFrame
         dfs = [pd.read_excel(f, engine='openpyxl') for f in files]
 
-        # concat horizontal, removendo colunas repetidas
+        # concat horizontal
         all_cols = set()
         cleaned = []
         for df in dfs:
-            df = df.loc[:, ~df.columns.duplicated()]      # remove colunas duplicadas internas
-            df = df.loc[:, ~df.columns.isin(all_cols)]     # não repete colunas já vistas
+            
             all_cols.update(df.columns)
             cleaned.append(df)
 
@@ -43,4 +42,4 @@ def principal_view(request):
         response['Content-Disposition'] = 'attachment; filename="resultado.xlsx"'
         return response
 
-    return render(request, 'principal.html')
+    return render(request, 'index.html')

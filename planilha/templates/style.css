@@ -1,0 +1,169 @@
+/* Definição de variáveis para facilitar a manutenção do tema */
+:root {
+    --primary-color: #2575fc;
+    --secondary-color: #6a11cb;
+    --background-color: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-success: #4CAF50;
+    --accent-hover: #45A049;
+  }
+  
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo global do body com gradiente e centralização */
+  body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background-image: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #0D0D2B, #1A1A40);
+  }
+  
+  /* Container principal com fundo escuro, bordas arredondadas e sombra */
+  .container {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  /* Cabeçalho com o botão SAIR */
+  .header {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .sair-btn {
+    background: linear-gradient(90deg, #6A0DAD, #FF69B4);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .sair-btn:hover {
+    transform: scale(1.05);
+    background: #FF69B4;
+  }
+  
+  /* Área principal dividida em duas colunas */
+  .content {
+    display: flex;
+    flex-direction: row;
+    min-height: 500px;
+  }
+  
+  /* Responsividade para dispositivos menores */
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+    .tutorial {
+      border-right: none;
+      border-bottom: 1px solid #444;
+      padding: 20px;
+    }
+    .upload-area {
+      padding: 20px;
+    }
+  }
+  
+  /* Coluna da esquerda: Tutorial */
+  .tutorial {
+    flex: 1;
+    padding: 40px;
+    border-right: 1px solid #444;
+  }
+  .tutorial h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-color);
+  }
+  .tutorial-step {
+    margin-bottom: 25px;
+  }
+  .tutorial-step h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #8BC34A;
+  }
+  .tutorial-step p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color);
+  }
+  
+  /* Coluna da direita: Upload */
+  .upload-area {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .upload-field {
+    margin-bottom: 25px;
+    width: 100%;
+  }
+  .file-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  
+  /* Botão customizado para envio de arquivo com barra mais extensa */
+  .custom-file-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .custom-file-button:hover {
+    background: var(--accent-hover);
+  }
+  
+  /* Esconde o input file original */
+  .upload-field input[type="file"] {
+    display: none;
+  }
+  
+  /* Botão GERAR */
+  .generate-btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 15px;
+    background: linear-gradient(to right, var(--accent-success), #8BC34A);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+  }
+  .generate-btn:hover {
+    background: var(--accent-hover);
+  }
+  
