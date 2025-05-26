@@ -24,15 +24,6 @@ label {
     color: white; /* Ajuste para refletir o texto */
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: #333; /* Fundo escuro */
-    color: white; /* Para combinar com o fundo */
-}
-
 button {
     width: 100%;
     padding: 10px;
@@ -42,13 +33,4 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold; /* Para um toque mais chamativo */
-}
-
-button:hover {
-    background-color: #218838; /* Verde no hover */
-}
-
-#message {
-    margin-top: 15px;
-    color: red; /* Para mensagens de erro */
 }

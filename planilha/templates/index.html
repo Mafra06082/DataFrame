@@ -92,14 +92,16 @@
     .tutorial {
       flex: 1;
       padding: 40px;
-      border-right: 1px solid rgba(255,255,255,0.2);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
       text-align: left;
     }
     .tutorial h1 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #8BC34A;
+    text-align: center;
     }
     .tutorial-step {
       margin-bottom: 25px;
@@ -145,7 +147,7 @@
       display: block;
       width: 100%;
       padding: 10px;
-      background: linear-gradient(to right, #000000, #005eff);
+      background: linear-gradient(90deg, #6A0DAD, #FF69B4);
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -153,7 +155,7 @@
       transition: background 0.3s ease;
     }
     .custom-file-button:hover {
-      background: #45A049;
+      background: #430955;
     }
     .upload-field input[type="file"] {
       display: none;
@@ -162,7 +164,7 @@
       width: 100%;
       max-width: 250px;
       padding: 15px;
-      background: linear-gradient(to right, #4CAF50, #8BC34A);
+      background: linear-gradient(90deg, #6A0DAD, #9b3467);
       border: none;
       border-radius: 8px;
       color: #fff;
@@ -172,7 +174,7 @@
       margin-top: 20px;
     }
     .generate-btn:hover {
-      background: #45A049;
+      background: #430955;
     }
 
     /* Mensagem de resultado */
@@ -252,7 +254,7 @@
       <form method="POST" action="{% url 'planilha' %}" enctype="multipart/form-data" onsubmit="return validarEEnviar(this)">
        {% csrf_token %}
       <div class="upload-field">
-      <label for="file2" class="file-label">Arquivos:</label>
+      <label for="file2" class="file-label"> <br> <br>Arquivos:</label>
       <label for="file2" class="custom-file-button">Selecione aqui...</label>
       <input type="file" id="file2" name="planilhas" multiple required><br><br> 
       </div>

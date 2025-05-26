@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <style>
-    /* Fundo com gradiente azul escuro */
     body {
       margin: 0;
       padding: 0;
@@ -18,7 +17,6 @@
       color: white;
     }
 
-    /* Container centralizado com fundo translúcido, espaçamento e bordas arredondadas */
     .container {
       text-align: center;
       padding: 30px;
@@ -30,17 +28,15 @@
       margin: 20px;
     }
 
-    /* Logotipo aumentada e centralizada – SEM ALTERAÇÃO NA ALTURA (250px) */
     .logo {
       text-align: center;
-      /* A ideia é que a logo conviva de forma integrada com os demais elementos */
       margin-bottom: 15px;
     }
+
     .logo img {
-      height: 350px; /* Não alterado conforme solicitado */
+      height: 350px;
     }
 
-    /* Configuração dos grupos de entrada */
     .input-group {
       margin: 20px 0;
       text-align: center;
@@ -52,7 +48,6 @@
       margin-bottom: 8px;
     }
 
-    /* Estilo dos campos de entrada com largura limitada, fundo translúcido e texto centralizado */
     .input-group input {
       width: 100%;
       max-width: 300px;
@@ -60,7 +55,7 @@
       font-size: 1.3rem;
       border: none;
       border-radius: 50px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.356);
       color: white;
       text-align: center;
       transition: background 0.3s, box-shadow 0.3s;
@@ -70,26 +65,24 @@
       color: #ccc;
     }
 
-    /* Estilo de foco para os campos de entrada */
     .input-group input:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    /* Wrapper para o campo de senha */
     .password-wrapper {
       position: relative;
     }
 
     .password-wrapper input {
       width: 100%;
-      padding-right: 40px; /* Espaço reservado para o ícone */
+      padding-right: 40px;
     }
 
     .eye-icon {
       position: absolute;
-      right: 10px; /* Ícone alinhado à direita do campo de entrada */
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -97,10 +90,18 @@
     }
 
     .eye-icon:hover {
-      transform: scale(1.2); /* Efeito de hover */
+      transform: scale(1.2);
     }
 
-    /* Botão com gradiente, bordas arredondadas e efeito hover */
+    .eye-icon svg {
+      stroke: #030303;
+      transition: stroke 0.3s;
+    }
+
+    .eye-icon:hover svg {
+      stroke: #555;
+    }
+
     button {
       margin-top: 20px;
       padding: 15px 40px;
@@ -122,7 +123,6 @@
       transform: scale(1.0);
     }
 
-    /* Mensagem de erro */
     #error-message {
       color: #FF4D4D;
       font-weight: bold;
@@ -133,25 +133,29 @@
 </head>
 <body>
   <div class="container">
-    <!-- Logotipo integrado com os elementos – permanecendo na parte superior -->
     <div class="logo">
       <img src="https://i.imgur.com/6XU9DnI.png" alt="Login Logo">
     </div>
     
-    <!-- Formulário de Login -->
     <form method="POST" action="{% url 'login' %}">
       {% csrf_token %}
       <div class="input-group">
-        <label for="username">Usuario:</label>
+        <label for="username">Usuário:</label>
         <input type="text" id="username" name="usuario" placeholder="Digite seu login" required>
       </div>
       <div class="input-group">
         <label for="password">Senha:</label>
         <div class="password-wrapper">
           <input type="password" id="password" name="senha" placeholder="Digite sua senha" required>
-          <!-- Ícone de olho que alterna entre fechado e aberto -->
           <span id="togglePassword" class="eye-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="24" fill="none"
+            <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="60" height="24" fill="none"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-eye" style="display: none;">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M1 12s5-7 11-7 11 7 11 7-5 7-11 7S1 12 1 12z"></path>
+            </svg>
+
+            <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="60" height="24" fill="none"
               stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-eye-off">
               <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.66 21.66 0 0 1 5-5.12"></path>
@@ -163,36 +167,24 @@
       <button type="submit" id="loginButton">ENTRAR</button>
     </form>
     
-    <!-- Mensagem de erro (inicialmente escondida) -->
     <div id="error-message">Usuário inexistente. Tente novamente.</div>
   </div>
-  
-  <script>
 
-    // Alterna entre mostrar e ocultar a senha ao clicar no ícone
+  <script>
     const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("password");
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+
     togglePassword.addEventListener("click", function () {
-      const passwordField = document.getElementById("password");
       if (passwordField.type === "password") {
         passwordField.type = "text";
-        togglePassword.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="24" fill="none"
-            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-eye">
-            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        `;
+        eyeOpen.style.display = "inline";
+        eyeClosed.style.display = "none";
       } else {
         passwordField.type = "password";
-        togglePassword.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="24" fill="none"
-            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-eye-off">
-            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.66 21.66 0 0 1 5-5.12"></path>
-            <path d="M1 1l22 22"></path>
-          </svg>
-        `;
+        eyeOpen.style.display = "none";
+        eyeClosed.style.display = "inline";
       }
     });
   </script>

@@ -15,29 +15,28 @@
     box-sizing: border-box;
   }
   
-  /* Estilo global do body com gradiente e centralização */
-  body {
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background-image: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-    color: var(--text-color);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #0D0D2B, #1A1A40);
-  }
-  
-  /* Container principal com fundo escuro, bordas arredondadas e sombra */
-  .container {
-    background-color: var(--background-color);
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    position: relative;
-    max-width: 1200px;
-    width: 100%;
-  }
+ body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-image: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;      /* remove vertical centering */
+  /* align-items: center; */     /* comentado para não centralizar verticalmente */
+  padding: 60px 20px 20px;      /* mais espaço no topo, empurrando o container para cima */
+  background: linear-gradient(135deg, #0D0D2B, #1A1A40);
+}
+
+/* === CONTAINER PRINCIPAL permanece igual === */
+.container {
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+}
   
   /* Cabeçalho com o botão SAIR */
   .header {
@@ -128,21 +127,24 @@
     font-size: 1.1rem;
   }
   
-  /* Botão customizado para envio de arquivo com barra mais extensa */
-  .custom-file-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-    color: var(--text-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  .custom-file-button:hover {
-    background: var(--accent-hover);
-  }
+  /* === BOTÃO “Selecionar Arquivos” maior === */
+.custom-file-button {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;        /* aumenta altura e largura interna */
+  font-size: 1.2rem;          /* texto maior */
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+.custom-file-button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.02);
+}
   
   /* Esconde o input file original */
   .upload-field input[type="file"] {
