@@ -5,7 +5,7 @@
     --background-color: #1e1e1e;
     --text-color: #ffffff;
     --accent-success: #4CAF50;
-    --accent-hover: #45A049;
+    --accent-hover: #4CAF50;
   }
   
   /* Reset básico */
@@ -46,7 +46,7 @@
   }
   
   .sair-btn {
-    background: linear-gradient(90deg, #6A0DAD, #FF69B4);
+    background: #8BC34A;
     color: var(--text-color);
     border: none;
     border-radius: 8px;

@@ -2,6 +2,8 @@ import io
 import pandas as pd
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.messages import constants
+from django.contrib import messages
 
 def principal_view(request):
     if request.method == "POST":
@@ -12,6 +14,9 @@ def principal_view(request):
         # Se não vier mais de um, avisa no console e renderiza o template de novo
         if len(files) < 2:
             print("[DEBUG] Menos de 2 arquivos, adicione pelo menos mais um.")
+
+            messages.add_message(request, constants.ERROR, 'Arquivo gerado com successo.')
+
             return render(request, 'index.html', {
                 'erro': 'Por favor faça upload de pelo menos 2 planilhas.'
             })
@@ -40,6 +45,7 @@ def principal_view(request):
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
         response['Content-Disposition'] = 'attachment; filename="resultado.xlsx"'
+        messages.add_message(request, constants.SUCCESS, 'Arquivo gerado com successo.')
         return response
 
     return render(request, 'index.html')
