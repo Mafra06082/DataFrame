@@ -12,14 +12,12 @@ def principal_view(request):
         print(f"[DEBUG] {len(files)} arquivos recebidos:", [f.name for f in files])
 
         # Se não vier mais de um, avisa no console e renderiza o template de novo
-        if len(files) < 2:
+        if not files or len(files) < 2:
             print("[DEBUG] Menos de 2 arquivos, adicione pelo menos mais um.")
 
-            messages.add_message(request, constants.ERROR, 'Arquivo gerado com successo.')
+            messages.add_message(request, constants.ERROR, 'Selecione pelo menos duas planilhas.')
 
-            return render(request, 'index.html', {
-                'erro': 'Por favor faça upload de pelo menos 2 planilhas.'
-            })
+            return render(request, 'index.html')
 
         # carrega cada Excel num DataFrame
         dfs = [pd.read_excel(f, engine='openpyxl') for f in files]
@@ -45,7 +43,9 @@ def principal_view(request):
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
         response['Content-Disposition'] = 'attachment; filename="resultado.xlsx"'
-        messages.add_message(request, constants.SUCCESS, 'Arquivo gerado com successo.')
+
+        messages.add_message(request, constants.SUCCESS, 'Arquivo gerado com sucesso.')
+
         return response
 
     return render(request, 'index.html')

@@ -251,7 +251,13 @@
       <div class="logo">
       <img src="https://i.imgur.com/6XU9DnI.png" alt="DataFrame - Organizador de Planilhas">
       </div>
-       
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
       <form method="POST" action="{% url 'planilha' %}" enctype="multipart/form-data" onsubmit="return validarEEnviar(this)">
        {% csrf_token %}
       <div class="upload-field">
